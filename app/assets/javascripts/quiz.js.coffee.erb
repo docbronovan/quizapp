@@ -1,0 +1,30 @@
+class LiveQuiz
+    constructor: () ->
+
+      @heartbeat = 20
+
+      @uuid = .............
+      @auth_key = ........
+      @session_key = ............
+      @participant = ..............
+
+      @client_channel = @session_key+"-client"
+      @server_channel = @session_key+"-server"
+      @chat_channel = @session_key+"-chat"
+
+      @pubnub = PUBNUB(
+          publish_key: '<%= ENV.fetch('PUBNUB_PUBLISH_KEY') %>'
+          subscribe_key: '<%= ENV.fetch('PUBNUB_SUBSCRIBE_KEY') %>'
+          auth_key: @auth_key
+          uuid: @uuid
+          origin: 'pubsub.pubnub.com'
+          ssl: true
+      )
+
+   ##################### UTILITIES ########################
+
+   # Fetch a react component from the react name
+    react: (react_name) ->
+      $("[data-react-class=#{react_name}]").get(0)
+
+@liveQuiz = new LiveQuiz()  
